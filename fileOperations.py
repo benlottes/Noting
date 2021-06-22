@@ -61,6 +61,17 @@ class FileOperations:
             for line in text_array:
                 text = text + line
             return text
+            
+    def update_text(self, note_name, new_text):
+        with open(self.note_file + note_name, 'r+') as f:
+            tags = f.readline()
+            f.seek(0)
+            f.truncate(0)
+            
+            f.write(tags)
+            f.write(new_text)
     
 f = FileOperations()
+print(f.get_text("ben.txt"))
+print(f.update_text("ben.txt", "Yeah my name is still ben\nAnd Im pretty rad"))
 print(f.get_text("ben.txt"))
