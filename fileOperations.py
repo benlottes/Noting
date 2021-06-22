@@ -52,8 +52,15 @@ class FileOperations:
             print(matched_tags)
             print(len(search_tags)-len(matched_tags))
             all_matches[len(search_tags)-len(matched_tags)].insert(0, note)
-            
-        print(all_matches)
-                
+        return all_matches
+    
+    def get_text(self, note_name):
+        with open(self.note_file + note_name) as f:
+            text_array = f.readlines()[1:]
+            text = ''
+            for line in text_array:
+                text = text + line
+            return text
+    
 f = FileOperations()
-f.search_with_tags(["adjective", "word", "shit", "noun"])
+print(f.get_text("ben.txt"))
