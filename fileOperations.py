@@ -4,12 +4,12 @@ import numpy
 class FileOperations:
 
     def __init__(self):
-        self.note_file = os.getcwd() + ("\\notes\\")
+        self.note_file = os.getcwd() + ('\\notes\\')
         self.all_notes = self.store_notes();
 
     def save_new_file(self, note_name, tags, note_content):
         try:
-            f = open(self.note_file + note_name + ".txt", 'x')
+            f = open(self.note_file + note_name + '.txt', 'x')
             f.write(tags + '\n' + note_content)
             f.close()
             self.all_notes[note_name] = tags.split()
@@ -17,7 +17,7 @@ class FileOperations:
         except FileExistsError:
             return False
 
-    #Dictionary in form {"Name of note", [tags, for, note]}            
+    #Dictionary in form {'Name of note', [tags, for, note]}            
     def store_notes(self):
         note_names = os.listdir(self.note_file)
         notes = {}
@@ -29,8 +29,8 @@ class FileOperations:
         return notes
 
     def update_tags(self, note_name, new_tags):
-        self.all_notes[note_name + '.txt'] = new_tags.split()
-        with open(self.note_file + note_name + ".txt", 'r+') as f:
+        self.all_notes[note_name] = new_tags.split()
+        with open(self.note_file + note_name, 'r+') as f:
             lines = f.readlines()
             lines[0] = (new_tags + '\n')
             
@@ -72,6 +72,4 @@ class FileOperations:
             f.write(new_text)
     
 f = FileOperations()
-print(f.get_text("ben.txt"))
-print(f.update_text("ben.txt", "Yeah my name is still ben\nAnd Im pretty rad"))
-print(f.get_text("ben.txt"))
+
